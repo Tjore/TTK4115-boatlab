@@ -1,6 +1,6 @@
 %% 5.3 a
 
-s = tf('s')
+s = tf('s');
 % syms s
 
 K = 0.16;
@@ -17,7 +17,7 @@ Td = T; % Time constant that cancels out the systems time constant
 
 Hpd = Kpd*(Td*s+1)/(Tf*s+1);
 
-Hol = Hb*Hpd
+Hol = Hb*Hpd;
 
 % bode(Hol) ja
 [Gm,Pm,Wcg,Wcp] = margin(Hol)
