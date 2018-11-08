@@ -45,12 +45,12 @@ grid
 subplot(2,1,2)
 semilogx(wout, squeeze(phase), '-', 'LineWidth',1.5)
 axis([10^-3, 10, -180, -90])
-% Trenger kode for å stille på ticks her
 yticks([-180 -130 -90])
 set(gca,'FontSize',12,'linewidth',1.0)
 ylabel("Phase (deg)",'Interpreter','latex','FontSize', 15)
 xlabel("Frequency (rad/s)",'Interpreter','latex','FontSize', 15)
 grid
+
 
 
 
