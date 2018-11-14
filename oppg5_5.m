@@ -41,4 +41,11 @@ Cd = C;
 [Ad,Ed] = c2d(A,E,Ts);
 
 
+%% 5.5b
+
+% run simulation to get disturbance
+sim("ship_5_5b.slx");
+
+%find the variance 
+sigma = var(simout.data);
 
