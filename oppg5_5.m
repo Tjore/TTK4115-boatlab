@@ -43,7 +43,7 @@ Cd = C;
 
 %% 5.5b
 
-% run simulation to get disturbance
+% run simulation to get noise
 sim("ship_5_5b.slx");
 
 %find the variance 
