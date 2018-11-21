@@ -36,9 +36,23 @@ C = [0, 1, 1, 0, 0];
 
 % Discretizing
 
-[Ad,Bd] = c2d(A,B,Ts);
+syms s t;
+
+Ad = vpa(ilaplace((s*eye(5)-A)^-1, Ts),5);
+
+eat = @(t) ilaplace(((s*eye(length(A)) - A))^-1)
+
+Bd = vpa(int(eat,t,0,Ts)*B,3);
+Ed = vpa(int(eat,t,0,Ts)*E,3);
+
 Cd = C;
-[Ad,Ed] = c2d(A,E,Ts);
+
+
+% Discretizing using matlab function (equivalent)
+
+% [Ad,Bd] = c2d(A,B,Ts);
+% Cd = C;
+% [Ad,Ed] = c2d(A,E,Ts);
 
 
 %% 5.5b
@@ -170,12 +184,4 @@ sim5f_d = sim("ship_5_5d.slx", "Stoptime", "600");
 sim5f_e = sim("ship_5_5e.slx", "Stoptime", "600");
 
 % plot
-
-
-
-
-
-
-
-
 
