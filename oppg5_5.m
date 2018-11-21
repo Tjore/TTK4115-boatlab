@@ -54,11 +54,13 @@ R = sigma;
 
 % given variables
 Q = [30 0; 0 1e-6];
+
 P0bar = [1 0 0 0 0;
         0 0.013 0 0 0;
         0 0 pi^2 0 0;
         0 0 0 1 0;
         0 0 0 0 2.5e-3];
+    
 x0bar = [0 0 0 0 0]';
 I = eye(5);
 
@@ -72,16 +74,66 @@ parameters = struct('A',Ad,'B',Bd,'C',Cd,'E',Ed,'I',I,'Q',Q,'R',R,'P0bar',P0bar,
 %% 5.5d
 
 % run simulation
-sim("ship_5_5d.slx");
+sim5d = sim("ship_5_5d.slx", "Stoptime", "600");
 
 % plot
+figure
+plot(sim5d.compass);
+hold on
+plot(sim5d.compass_est);
+grid
+title("$\psi_r = 30^\circ$ with disturbances",'Interpreter','latex')
+legend({'Heading $\psi$', 'Est heading $\psi^-$'},'Interpreter','latex','location','northeastoutside');
+xlabel("Time (Seconds)",'Interpreter','latex','FontSize', 15)
+ylabel("(Degrees)",'Interpreter','latex','FontSize', 15)
+set(gcf, 'Position', [100, 100, 700, 400])
+set(gca,'FontSize',12,'linewidth',1.0)
+
+figure
+plot(sim5d.u)
+hold on
+plot(sim5d.rudderBias_est)
+
+grid
+title("$\psi_r = 30^\circ$ with disturbances",'Interpreter','latex')
+legend({'rudder input', 'Est bias $r$'},'Interpreter','latex','location','northeastoutside');
+xlabel("Time (Seconds)",'Interpreter','latex','FontSize', 15)
+ylabel("(Degrees)",'Interpreter','latex','FontSize', 15)
+set(gcf, 'Position', [100, 100, 700, 400])
+set(gca,'FontSize',12,'linewidth',1.0)
 
 
 %% 5.5e
 
 % run simulation
-sim("ship_5_5e.slx");
+sim5e = sim("ship_5_5e.slx", "Stoptime", "600");
+
+
 
 % plot
+
+%% 5.5f
+
+Q = [30 0; 0 1e-6];
+
+parameters.Q = Q;
+
+% run simulation
+sim5f_d = sim("ship_5_5d.slx", "Stoptime", "600");
+
+% plot eller lagre data
+
+
+% run simulation
+sim5f_e = sim("ship_5_5e.slx", "Stoptime", "600");
+
+% plot
+
+
+
+
+
+
+
 
 
