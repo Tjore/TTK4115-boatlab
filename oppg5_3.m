@@ -40,7 +40,7 @@ semilogx(wout, 20*log10(squeeze(mag)), '-', 'LineWidth',1.5)
 axis([10^-3, 10, -60, 40])
 set(gca,'FontSize',12,'linewidth',1.0)
 title("Bode Diagram",'Interpreter','latex')
-ylabel("Magnitude (DB)",'Interpreter','latex','FontSize', 15)
+ylabel("Magnitude (dB)",'Interpreter','latex','FontSize', 15)
 grid
 subplot(2,1,2)
 semilogx(wout, squeeze(phase), '-', 'LineWidth',1.5)
