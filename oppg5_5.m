@@ -48,4 +48,39 @@ sim("ship_5_5b.slx");
 
 %find the variance 
 sigma = var(simout.data);
+R = sigma;
+
+%% 5.5 d&e variable values
+
+% given variables
+Q = [30 0; 0 1e-6];
+P0bar = [1 0 0 0 0;
+        0 0.013 0 0 0;
+        0 0 pi^2 0 0;
+        0 0 0 1 0;
+        0 0 0 0 2.5e-3];
+x0bar = [0 0 0 0 0]';
+I = eye(5);
+
+% PD-controller
+Kpd = 0.8159;
+Td = 75;
+Tf = 8.3910;
+
+parameters = struct('A',Ad,'B',Bd,'C',Cd,'E',Ed,'I',I,'Q',Q,'R',R,'P0bar',P0bar,'x0bar',x0bar);
+
+%% 5.5d
+
+% run simulation
+sim("ship_5_5d.slx");
+
+% plot
+
+
+%% 5.5e
+
+% run simulation
+sim("ship_5_5e.slx");
+
+% plot
 

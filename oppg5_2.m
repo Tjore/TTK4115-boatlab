@@ -1,6 +1,6 @@
 %% 5.2 a
 
-% Import wave.mat
+% load wave.mat
 
 x = psi_w(2,:).*(pi/180);
 window = 4096;
