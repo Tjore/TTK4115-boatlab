@@ -32,7 +32,8 @@ grid
 
 %% 5.2 c
 
-omega0 = omega(pxx==max(pxx))
+omega0 = omega(pxx==max(pxx)) % Breaking frequency
+sigma2 = max(pxx) % Variance
 
 %% 5.2 d
 
@@ -40,6 +41,7 @@ omega0 = omega(pxx==max(pxx))
 
 lambda = 0.07;
 omega0 = 0.7823;
+omega0 = pi/4;
 sigma = sqrt(max(pxx));
 K_w = 2*lambda*omega0*sigma;
 w = linspace(0,2,2000);
@@ -48,7 +50,11 @@ P_w = (K_w^2.*omega.^2)./(omega.^4+(4*lambda^2-2).*omega.^2*omega0^2+omega0^4)
 
 hold on
 plot(omega,P_w,'--r','LineWidth',1.5)
-
+axis([0,2, 0, 0.0008])
+xticks([0, pi/8, pi/4, 3*pi/8, pi/2, pi])
+xticklabels({'0', '?/8', '?/4', '3?/8', '?/2', '?'})
 legend({'$S_{\psi_w}(\omega)$','$\lambda = 0.07$'},'Interpreter','latex','location','northeastoutside')
 
-
+% Forsøk på å finne variansen (Nei, ikke gjør dette)
+% fun = @(omega) (K_w^2.*omega.^2)./(omega.^4+(4*lambda^2-2).*omega.^2*omega0^2+omega0^4);
+% variance = integral(fun,0,500000)/pi
