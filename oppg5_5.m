@@ -3,7 +3,7 @@
 %Parameters
 K = 0.16;
 T = 75;
-omega0 = 0.7823;
+omega0 = pi/4; %0.7823;
 lambda = 0.07;
 sigma = 0.0281;
 Kw = 2*lambda*omega0*sigma
