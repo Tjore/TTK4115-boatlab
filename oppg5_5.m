@@ -62,7 +62,7 @@ sim("ship_5_5b.slx");
 
 %find the variance 
 sigma = var(simout.data);
-R = sigma;
+R = sigma/Ts;
 
 %% 5.5 d&e variable values
 
