@@ -174,14 +174,39 @@ set(gca,'FontSize',12,'linewidth',1.0)
 
 %% 5.5f
 
-Q = [30 0; 0 1e-6];
+% Q = [30 0; 0 1e-6];   %standard Q
 
-parameters.Q = Q;
+newQs = {diag([30,1e-6]),diag([3000,1e-6]),diag([30,1e-4]),diag([3000,1e-4])...
+    diag([0.3,1e-6]),diag([30,1e-8]),diag([0.3,1e-8])};
+
+compassPlot = figure;
+hold on
+biasPlot = figure;
+hold on
+wavePlot = figure;
+hold on
+    
+for Q = newQs
+parameters.Q = Q{1};   %update parameters
 
 % run simulations
 sim5f_d = sim("ship_5_5d.slx", "Stoptime", "600");
 
-sim5f_e = sim("ship_5_5e.slx", "Stoptime", "600");
+%sim5f_e = sim("ship_5_5e.slx", "Stoptime", "600"); %do seperatly?
 
 % plot
+
+figure(compassPlot)
+plt = plot(sim5f_d.compass);
+color = get(plt,'Color');
+plot(sim5f_d.compass_est,"--","color",color);
+
+figure(biasPlot)
+plt = plot(sim5f_d.rudderBias_est);
+color = get(plt,'Color');
+plot(sim5f_d.u,"--","color",color);
+
+end
+
+% pretty plot
 
