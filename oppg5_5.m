@@ -62,7 +62,7 @@ sim("ship_5_5b.slx");
 
 %find the variance 
 sigma = var(simout.data);
-R = sigma/Ts;
+R = sigma/fs;
 
 %% 5.5 d&e variable values
 
@@ -83,7 +83,7 @@ Kpd = 0.8159;
 Td = 75;
 Tf = 8.3910;
 
-parameters = struct('A',Ad,'B',Bd,'C',Cd,'E',Ed,'I',I,'Q',Q,'R',R,'P0bar',P0bar,'x0bar',x0bar);
+parameters = struct('A',double(Ad),'B',double(Bd),'C',double(Cd),'E',double(Ed),'I',I,'Q',Q,'R',R,'P0bar',P0bar,'x0bar',x0bar);
 
 %% 5.5d
 
@@ -110,7 +110,7 @@ plot(sim5d.rudderBias_est)
 
 grid
 title("$\psi_r = 30^\circ$ with disturbances",'Interpreter','latex')
-legend({'rudder input', 'Est bias $r$'},'Interpreter','latex','location','northeastoutside');
+legend({'Rudder input', 'Est bias $r$'},'Interpreter','latex','location','northeastoutside');
 xlabel("Time (Seconds)",'Interpreter','latex','FontSize', 15)
 ylabel("(Degrees)",'Interpreter','latex','FontSize', 15)
 set(gcf, 'Position', [100, 100, 700, 400])
@@ -118,6 +118,8 @@ set(gca,'FontSize',12,'linewidth',1.0)
 
 
 %% 5.5e
+
+load("wave.mat");
 
 % run simulation
 sim5e = sim("ship_5_5e.slx", "Stoptime", "600");
@@ -142,7 +144,7 @@ hold on
 plot(sim5e.rudderBias_est)
 grid
 title("$\psi_r = 30^\circ$ with disturbances",'Interpreter','latex')
-legend({'rudder input', 'Est bias $r$'},'Interpreter','latex','location','northeastoutside');
+legend({'Rudder input', 'Est bias $r$'},'Interpreter','latex','location','northeastoutside');
 xlabel("Time (Seconds)",'Interpreter','latex','FontSize', 15)
 ylabel("(Degrees)",'Interpreter','latex','FontSize', 15)
 set(gcf, 'Position', [100, 100, 700, 400])
@@ -155,7 +157,7 @@ hold on
 plot(sim5e.wave_est)
 grid
 title("Wave disturbance",'Interpreter','latex')
-legend({'waves', 'Est waves'},'Interpreter','latex','location','northeastoutside');
+legend({'Waves', 'Est waves'},'Interpreter','latex','location','northeastoutside');
 xlabel("Time (Seconds)",'Interpreter','latex','FontSize', 15)
 ylabel("(Degrees)",'Interpreter','latex','FontSize', 15)
 set(gcf, 'Position', [100, 100, 700, 400])
@@ -169,6 +171,7 @@ title("Difference between waves and estimated waves",'Interpreter','latex')
 %legend({'waves', 'Est waves'},'Interpreter','latex','location','northeastoutside');
 xlabel("Time (Seconds)",'Interpreter','latex','FontSize', 15)
 ylabel("(Degrees)",'Interpreter','latex','FontSize', 15)
+axis([0,600,0,2])
 set(gcf, 'Position', [100, 100, 700, 400])
 set(gca,'FontSize',12,'linewidth',1.0)
 
