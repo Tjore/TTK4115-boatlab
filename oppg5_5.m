@@ -179,21 +179,21 @@ set(gca,'FontSize',12,'linewidth',1.0)
 
 % Q = [30 0; 0 1e-6];   %standard Q
 
-newQs = {diag([30,1e-6]),diag([3000,1e-6]),diag([30,1e-4]),diag([3000,1e-4])...
-    diag([0.3,1e-6]),diag([30,1e-8]),diag([0.3,1e-8])};
+newQs = {diag([30,1e-6]),diag([30,1e-12]),diag([30000,1e-6])}%,diag([1e-6,30]),diag([0,0])}
+%%,diag([3000,1e-4])...diag([0.3,1e-6]),diag([30,1e-8]),diag([0.3,1e-8])};
 
 compassPlot = figure;
 hold on
 biasPlot = figure;
 hold on
-wavePlot = figure;
+%wavePlot = figure;
 hold on
     
 for Q = newQs
 parameters.Q = Q{1};   %update parameters
 
 % run simulations
-sim5f_d = sim("ship_5_5d.slx", "Stoptime", "600");
+sim5f_d = sim("ship_5_5e.slx", "Stoptime", "600");
 
 %sim5f_e = sim("ship_5_5e.slx", "Stoptime", "600"); %do seperatly?
 
@@ -207,9 +207,21 @@ plot(sim5f_d.compass_est,"--","color",color);
 figure(biasPlot)
 plt = plot(sim5f_d.rudderBias_est);
 color = get(plt,'Color');
-plot(sim5f_d.u,"--","color",color);
+%plot(sim5f_d.u,"--","color",color);
 
 end
+% figure(compassPlot)
+% legend
+% figure(biasPlot)
+% legend
 
 % pretty plot
-
+figure(compassPlot)
+grid
+title("Simulation with different Q-values",'Interpreter','latex')
+legend({'$Q_0 \psi$', '$Q_0 \psi^-$','$Q_1 \psi$', '$Q_1 \psi^-$','$Q_2 \psi$', '$Q_2 \psi^-$'},'Interpreter','latex','location','northeastoutside');
+xlabel("Time (Seconds)",'Interpreter','latex','FontSize', 15)
+ylabel("(Degrees)",'Interpreter','latex','FontSize', 15)
+axis([0,600,10,34])
+set(gcf, 'Position', [100, 100, 700, 400])
+set(gca,'FontSize',12,'linewidth',1.0)
