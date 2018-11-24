@@ -1,7 +1,7 @@
 %% 5.4 a
 
 K = 0.16;
-T = 75;
+T = 76;
 omega0 = 0.7823;
 lambda = 0.07;
 
@@ -20,7 +20,7 @@ Ab = A(3:4,3:4);
 Cb = C(3:4);
 
 OBb = obs(Ab,Cb)
-latexMatrix(OBb)
+%latexMatrix(OBb)
 
 
 %% 5.4 c
@@ -29,15 +29,15 @@ Ac = A(3:5,3:5);
 Cc = C(3:5);
 
 OBc = obs(Ac,Cc)
-latexMatrix(OBc)
+%latexMatrix(OBc)
 
 %% 5.4 d
 
-Ad = A(1:4,1:4)
-Cd = C(1:4)
+Ad = A(1:4,1:4);
+Cd = C(1:4);
 
 OBd = obs(Ad,Cd)
-latexMatrix(OBd)
+%latexMatrix(OBd)
 
 %% 5.4 e
 
@@ -45,4 +45,4 @@ Ae = A;
 Ce = C;
 
 OBe = obs(Ae,Ce)
-latexMatrix(OBe)
+%latexMatrix(OBe)

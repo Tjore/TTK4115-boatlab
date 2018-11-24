@@ -154,11 +154,13 @@ hold on
 plot(simout,'LineWidth',1.5)
 
 % OBS Når vi bruker step() så fucker vi opp formatteringen på aksene :(
-step(Hb,'--r')
-step(Hc,'--m')
+[b, tb] = step(Hb,'--r')
+[c, tc] = step(Hc,'--m')
 % step(Hj,'--')
 % step(H,'--')
 
+plot(tb, b, '--', 'LineWidth',1.5)
+plot(tc, c, '--', 'LineWidth',1.5)
 
 axis([0, 1000, 0, 200])
 
